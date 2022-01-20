@@ -1,22 +1,23 @@
 package com.aplicacionpolicia.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Estacion {
+public class UsuarioReclamante {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -24,14 +25,11 @@ public class Estacion {
 
     @NotNull
     @NotBlank
-    private String nombre;
+    private String documento;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "ciudad_id", referencedColumnName = "ciudadId")
-    private Ciudad ciudad;
+    @NotBlank
+    private String nombre;
 
-    @OneToMany(mappedBy = "estacion", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private Set<Cai> cais;
+
 }
